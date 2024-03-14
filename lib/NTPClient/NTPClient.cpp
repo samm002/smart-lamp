@@ -152,7 +152,7 @@ int NTPClient::getDate() {
   while((days += (LEAP_YEAR(year) ? 366 : 365)) <= rawTime)
     year++;
 
-  static const uint8_t monthDays[] = {31, LEAP_YEAR(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  static const uint8_t monthDays[] = {31, (uint8_t)(LEAP_YEAR(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   rawTime -= days - (LEAP_YEAR(year) ? 366 : 365);
 
