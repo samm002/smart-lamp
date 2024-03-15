@@ -7,8 +7,8 @@
 #include "Credentials.h"
 
 #define BAUD_RATE 115200
-#define LDR_SENSOR_ANALOG 39
-#define LDR_SENSOR_DIGITAL 34
+#define LDR_SENSOR_DIGITAL 39
+#define LDR_SENSOR_ANALOG 34
 #define PIR_SENSOR 35
 #define LED 33
 
