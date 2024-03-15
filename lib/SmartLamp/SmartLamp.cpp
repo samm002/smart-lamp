@@ -15,17 +15,17 @@ void SmartLamp::setup() {
   pinMode(LDR_SENSOR_ANALOG, INPUT);
   pinMode(LDR_SENSOR_DIGITAL, INPUT);
   pinMode(PIR_SENSOR, INPUT);
-  pinMode(LED, OUTPUT);
+  pinMode(RELAY, OUTPUT);
 }
 
-void SmartLamp::ledOn() {
-  digitalWrite(LED, HIGH);
-  _ledState = true;
+void SmartLamp::lampOn() {
+  digitalWrite(RELAY, HIGH);
+  _relayState = true;
 }
 
-void SmartLamp::ledOff() {
-  digitalWrite(LED, LOW);
-  _ledState = false;
+void SmartLamp::lampOff() {
+  digitalWrite(RELAY, LOW);
+  _relayState = false;
 }
 
 bool SmartLamp::lowLight() {
@@ -64,7 +64,7 @@ void SmartLamp::detectMotion() {
   _timeStampNow = timeStamp.getTimeStamp();
   if (motionDetected()) {
     if (!_motionDetectedNotice) {
-      ledOn();
+      lampOn();
       Serial.println("Motion Detected");
       Serial.print("Time Stamp : ");
       Serial.println(_timeStampNow);
@@ -75,7 +75,7 @@ void SmartLamp::detectMotion() {
     _motionLastIdleTime = _currentTime;
   } else {
     if (motionIdleTime() && _motionDetectedNotice) {
-      ledOff();
+      lampOff();
       Serial.println("No Motion Detected for 10 Second");
       Serial.print("Time Stamp : ");
       Serial.println(_timeStampNow);
@@ -92,7 +92,7 @@ void SmartLamp::detectLight() {
     _lowLightIdleTime = _currentTime;
   } else {
     if (lowLightIdleTime() && _pirState) {
-      ledOff();
+      lampOff();
       Serial.println("No Low Light & Motion Detected for 20 Second");
       Serial.print("Time Stamp : ");
       Serial.println(_timeStampNow);

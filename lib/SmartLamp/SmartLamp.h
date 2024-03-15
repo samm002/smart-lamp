@@ -10,11 +10,11 @@
 #define LDR_SENSOR_DIGITAL 39
 #define LDR_SENSOR_ANALOG 34
 #define PIR_SENSOR 35
-#define LED 33
+#define RELAY 33
 
 class SmartLamp {
   private:
-    bool _ledState;
+    bool _relayState;
     bool _motionDetectedNotice;
     bool _pirState;
 
@@ -40,8 +40,8 @@ class SmartLamp {
     bool motionIdleTime();
     bool lowLightIdleTime();
     
-    void ledOn();
-    void ledOff();
+    void lampOn();
+    void lampOff();
     void detectLight();
     void detectMotion();
 };
